@@ -7,8 +7,8 @@ Adds left / right alignment methods to CCMenu (and also CCMenuAdvanced).
 Features
 -------------
 
-   * Decorates CCMenu with 2 new functions.
-   * Does not interfer with existing alignment functions.
+   * Decorates CCMenu with 2 new functions which provide left and right alignment of CCMenu items.
+   * Does not interfere with existing alignment functions.
 
 
 Usage
