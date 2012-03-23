@@ -1,5 +1,5 @@
 //
-//  CCMenu+Alignment.m
+//  CCMenuAdvanced+Alignment.h
 //
 //  Created by Adam Griffiths on 23/03/12.
 //  Copyright (c) 2012 Twisted Pair Development. All rights reserved.
@@ -26,55 +26,34 @@
 //  THE SOFTWARE.
 //
 
-#import "CCMenu+Alignment.h"
+#import "CCMenuAdvanced.h"
 
-@implementation CCMenu (Alignment)
+@interface CCMenuAdvanced (Alignment)
 
-- (void)leftAlignItems
-{
-	// now we just fix up the left alignment
-	CCMenuItem *item = nil;
-	CCARRAY_FOREACH(children_, item)
-	{
-		CGPoint position = item.position;
-		CGSize itemSize = item.contentSize;
-	    [item setPosition:ccp( itemSize.width * item.scaleY / 2.0f, position.y )];
-	}
-}
+/*! Moves the menu to be relative to a specific position.
+ *
+ * When creating a menu we expect it to expand in a specific direction,
+ * but CCMenu and CCMenuAdvanced expand in all directions. Fun!
+ * With CCMenu we can just align the items when we create them, but
+ * CCMenuAdvanced is very different and we can't simply do that.
+ * We must move the menu itself.
+ */
+- (void)alignMenuTopWithYValue:(float)y;
+- (void)alignMenuLeftWithXValue:(float)x;
 
-- (void)rightAlignItems
-{
-	// now we just fix up the right alignment
-	CCMenuItem *item = nil;
-	CCARRAY_FOREACH(children_, item)
-	{
-		CGPoint position = item.position;
-		CGSize itemSize = item.contentSize;
-	    [item setPosition:ccp( -itemSize.width * item.scaleY / 2.0f, position.y )];
-	}
-}
-
--(void) alignItemsVerticallyFromTop
-{
-	// MAGIC: because private numbers with no accessors make us all happy =/
-	[self alignItemsVerticallyFromTopWithPadding:5];
-}
-
--(void) alignItemsVerticallyFromTopWithPadding:(float)padding
-{
-	float y = 0.0;
-	CCMenuItem *item = nil;
-	
-	CCARRAY_FOREACH(children_, item)
-	{
-		CGSize itemSize = item.contentSize;
-		float currentY = y - (itemSize.height * item.scaleY / 2.0f);
-	    
-		[item setPosition:ccp( 0, currentY)];
-		
-		// move to the next position
-	    y -= itemSize.height * item.scaleY + padding;
-	}
-}
-
+/*! Provides vertical alignment relative to the menu's position.
+ *
+ * CCMenu alignment usually centres around the menus position.
+ * This is bollocks, no one wants a menu that is out of control.
+ * So these functions align the menu items with the menu position
+ * as an origin, rather than a center.
+ *
+ * This is the equivalent of calling:
+ * [menu alignItemsVertically];
+ * [menu alignMenuTopWithYValue:menu.position.y];
+ * [menu alignMenuLeftWithYValue:menu.position.x];
+ */
+- (void)alignItemsVerticallyFromTop;
+- (void)alignItemsVerticallyFromTopWithPadding:(float)padding;
+- (void)alignItemsVerticallyFromTopWithPadding:(float)padding bottomToTop:(BOOL)bottomToTop;
 @end

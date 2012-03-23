@@ -7,7 +7,9 @@ Adds left / right alignment methods to CCMenu (and also CCMenuAdvanced).
 Features
 -------------
 
-   * Decorates CCMenu with 2 new functions which provide left and right alignment of CCMenu items.
+   * Decorates CCMenu and CCMenuAdvanced with new functions.
+   * Provide left and right alignment of menu or its items.
+   * Provides vertical alignment relative to menus position instead of existing 'expand in all directions' behavior.
    * Does not interfere with existing alignment functions.
 
 
@@ -23,4 +25,5 @@ Dependencies
 ----------------------------
 
    * cocos2d-iphone (or Kobold2d)
+   * CCMenuAdvanced (optional)
 

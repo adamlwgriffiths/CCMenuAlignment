@@ -44,4 +44,14 @@
  */
 - (void)rightAlignItems;
 
+/*! Provides vertical alignment relative to the menu's position.
+ *
+ * CCMenu alignment usually centres around the menus position.
+ * This is bollocks, no one wants a menu that is out of control.
+ * So these functions align the menu items with the menu position
+ * as an origin, rather than a center.
+ */
+- (void)alignItemsVerticallyFromTop;
+- (void)alignItemsVerticallyFromTopWithPadding:(float)padding;
+
 @end
